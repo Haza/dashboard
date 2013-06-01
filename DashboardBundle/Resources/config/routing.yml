@@ -1,0 +1,15 @@
+haza_dashboard_homepage:
+    pattern:  /
+    defaults: { _controller: hazaDashboardBundle:Default:index }
+
+haza_dashboard_admin:
+    pattern:  /admin
+    defaults: { _controller: hazaDashboardBundle:Admin:index }
+    requirements:
+        _method:  GET
+
+haza_dashboard_adminAdd:
+    pattern:  /admin/add
+    defaults: { _controller: hazaDashboardBundle:Admin:add }
+    requirements:
+        _method:  GET|POST

@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block navigation %}
+                        <nav>
+                            <ul class="navigation">
+                                <li><a href="{{ path('haza_dashboard_admin') }}">Admin</a></li>
+                                <li><a href="{{ path('haza_dashboard_adminAdd') }}">Add</a></li>
+                            </ul>
+                        </nav>
+{% endblock %}

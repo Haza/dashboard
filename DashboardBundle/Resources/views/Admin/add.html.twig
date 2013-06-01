@@ -1,0 +1,28 @@
+{% extends 'hazaDashboardBundle:Admin:index.html.twig' %}
+
+
+{% block title %}Admin / Add{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Add a Bookmark</h1>
+    </header>
+
+    {% if app.session.hasFlash('dashboard-notice') %}
+        <div class="bookmark-notice">
+            {{ app.session.flash('dashboard-notice') }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('haza_dashboard_adminAdd') }}" method="post" {{ form_enctype(form) }} class="bookmark">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.url) }}
+        {{ form_row(form.file) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
