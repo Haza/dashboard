@@ -13,3 +13,7 @@ haza_dashboard_adminAdd:
     defaults: { _controller: hazaDashboardBundle:Admin:add }
     requirements:
         _method:  GET|POST
+
+_imagine:
+    resource: .
+    type:     imagine

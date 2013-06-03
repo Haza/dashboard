@@ -1,6 +1,6 @@
 <!-- app/Resources/views/base.html.twig -->
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
         <title>{% block title %}{% endblock %} Dashboard</title>
@@ -39,10 +39,12 @@
                 {% for bookmark in bookmarks %}
                 <h3>{{ bookmark.title }}</h3>
                 {{ bookmark.url }}
-                <img src="{{ asset(['uploads/documents/', bookmark.path]|join) }}" class="large" />
+                <img src="{{ asset(['uploads/documents/', bookmark.path] | join) | imagine_filter('my_thumb')  }}" class="large" />
                 {% else %}
                 <p>There are no entries right now.</p>
                 {% endfor %}
+
+                <div class="add"><a href="{{ path('haza_dashboard_adminAdd') }}">Add</a></div>
             </section>
         </section>
 
