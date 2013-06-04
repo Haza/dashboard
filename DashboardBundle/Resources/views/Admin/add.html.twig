@@ -1,9 +1,27 @@
-{% extends 'hazaDashboardBundle:Admin:index.html.twig' %}
+{% extends 'hazaDashboardBundle:Layout:base.html.twig' %}
+
+
+{% form_theme form _self %}
+
+{% block field_row %}
+{% spaceless %}
+    {% set class='' %}
+    {% if attr.class is defined %}
+    {% set class = 'class="' ~ attr.class ~ '"' %}
+    {% endif %}
+
+    <div {{ class }} class="pure-control-group">
+        {{ form_label(form, label|default(null)) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock field_row %}
 
 
 {% block title %}Admin / Add{% endblock %}
 
-{% block body %}
+{% block content %}
     <header>
         <h1>Add a Bookmark</h1>
     </header>
@@ -14,15 +32,18 @@
         </div>
     {% endif %}
 
-    <form action="{{ path('haza_dashboard_adminAdd') }}" method="post" {{ form_enctype(form) }} class="bookmark">
-        {{ form_errors(form) }}
+    <form action="{{ path('haza_dashboard_adminAdd') }}" method="post" {{ form_enctype(form) }} class="pure-form pure-form-aligned">
+        <fieldset>
+            {{ form_errors(form) }}
 
-        {{ form_row(form.title) }}
-        {{ form_row(form.url) }}
-        {{ form_row(form.file) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.url) }}
+            {{ form_row(form.file) }}
 
-        {{ form_rest(form) }}
-
-        <input type="submit" value="Submit" />
+            {{ form_rest(form) }}
+            <div class="pure-controls">
+                <input type="submit" value="Submit" class="pure-button" />
+            </div>
+        </fieldset>
     </form>
 {% endblock %}

@@ -1,0 +1,65 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html"
+    ; charset=utf-8" />
+    <title>{% block title %}symblog{% endblock %} - symblog</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Irish+Grover'
+              rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore'
+              rel='stylesheet' type='text/css'>
+        <link href="{{ asset('css/screen.css') }}" type="text/css"
+              rel="stylesheet"/>
+        <link href="http://purecss.io/combo/1.1.3?/css/layouts/email.css"
+              type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet"
+              href="http://yui.yahooapis.com/pure/0.1.0/pure-min.css">
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+
+<body>
+
+<div class="pure-g-r content" id="layout">
+    <div class="pure-u" id="nav">
+        <a href="#nav" class="nav-menu-button">Menu</a>
+
+        <div class="nav-inner">
+            <a class="pure-button primary-button"
+               href="{{ path('haza_dashboard_adminAdd') }}">Add Bookmark</a>
+
+            <div class="pure-menu pure-menu-open">
+                {% block navigation %}
+                    <nav>
+                        <ul class="navigation">
+
+                        </ul>
+                    </nav>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="pure-u" id="list">
+        <div class="content">
+            {% block sidebar %}
+              base :)
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="pure-u" id="main">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
