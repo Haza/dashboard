@@ -19,21 +19,18 @@ class AdminController extends Controller
     {
         $bookmark = new Bookmark();
         $form = $this->createForm(new BookmarkType(), $bookmark);
-
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
             if ($form->isValid()) {
-              $this->get('session')->setFlash('bookmark-notice', 'Bookmark added!');
-              $em = $this->getDoctrine()
-                           ->getEntityManager();
-              // Handle the file.
-              $bookmark->upload();
-
-
-              $em->persist($bookmark);
-              $em->flush();
+                $this->get('session')->getFlashBag()->set('dashboard-notice', 'Bookmark added!');
+                $em = $this->getDoctrine()
+                    ->getEntityManager();
+                // Handle the file.
+                $bookmark->upload();
+                $em->persist($bookmark);
+                $em->flush();
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
                 return $this->redirect($this->generateUrl('haza_dashboard_adminAdd'));
@@ -55,12 +52,12 @@ class AdminController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-              $this->get('session')->setFlash('category-notice', 'Category added!');
-              $em = $this->getDoctrine()
-                           ->getEntityManager();
+                $this->get('session')->getFlashBag()->set('dashboard-notice', 'Category added!');
+                $em = $this->getDoctrine()
+                    ->getEntityManager();
 
-              $em->persist($category);
-              $em->flush();
+                $em->persist($category);
+                $em->flush();
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
                 return $this->redirect($this->generateUrl('haza_dashboard_adminAddCategory'));
