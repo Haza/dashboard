@@ -2,13 +2,14 @@
 
 {% block content %}
     {% for bookmark in bookmarks %}
-        <h3>{{ bookmark.title }}</h3>
-        {{ bookmark.url }}
-        <img src="{{ asset(['uploads/documents/', bookmark.path] | join) | imagine_filter('my_thumb') }}"
-             class="large"/>
+        <div class="bookmark-item">
+          <a href="{{ bookmark.url }}" ><img src="{{ asset(['uploads/documents/', bookmark.path] | join) | imagine_filter('my_thumb') }}" class="large"/></a>
+            <span>{{ bookmark.title }}</span>
+        </div>
     {% else %}
         <p>There are no entries right now.</p>
     {% endfor %}
+
     <div class="add"><a href="{{ path('haza_dashboard_adminAdd') }}">Add</a>
     </div>
 {% endblock %}

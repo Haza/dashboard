@@ -39,6 +39,12 @@ class Bookmark
      */
     public $path;
 
+   /**
+    * @ORM\ManyToOne(targetEntity="haza\DashboardBundle\Entity\Category")
+    * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+    */
+    protected $category_id;
+
     /**
      * Get id
      *
@@ -174,5 +180,28 @@ class Bookmark
     public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * Set category_id
+     *
+     * @param \haza\DashboardBundle\Entity\Category $categoryId
+     * @return Bookmark
+     */
+    public function setCategoryId(\haza\DashboardBundle\Entity\Category $categoryId = null)
+    {
+        $this->category_id = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * Get category_id
+     *
+     * @return \haza\DashboardBundle\Entity\Category 
+     */
+    public function getCategoryId()
+    {
+        return $this->category_id;
     }
 }

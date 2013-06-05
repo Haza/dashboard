@@ -3,7 +3,9 @@
 namespace haza\DashboardBundle\Controller;
 
 use haza\DashboardBundle\Entity\Bookmark;
+use haza\DashboardBundle\Entity\Category;
 use haza\DashboardBundle\Form\BookmarkType;
+use haza\DashboardBundle\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AdminController extends Controller
@@ -39,6 +41,33 @@ class AdminController extends Controller
         }
 
         return $this->render('hazaDashboardBundle:Admin:add.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    public function addCategoryAction()
+    {
+        $category = new Category();
+        $form = $this->createForm(new CategoryType(), $category);
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+              $this->get('session')->setFlash('category-notice', 'Category added!');
+              $em = $this->getDoctrine()
+                           ->getEntityManager();
+
+              $em->persist($category);
+              $em->flush();
+                // Redirect - This is important to prevent users re-posting
+                // the form if they refresh the page
+                return $this->redirect($this->generateUrl('haza_dashboard_adminAddCategory'));
+            }
+        }
+
+        return $this->render('hazaDashboardBundle:Admin:category.html.twig', array(
             'form' => $form->createView()
         ));
     }

@@ -2,6 +2,13 @@ haza_dashboard_homepage:
     pattern:  /
     defaults: { _controller: hazaDashboardBundle:Default:index }
 
+haza_dashboard_category:
+    pattern:  /{id}
+    defaults: { _controller: hazaDashboardBundle:Default:category }
+    requirements:
+        _method:  GET
+        id: \d+
+
 haza_dashboard_admin:
     pattern:  /admin
     defaults: { _controller: hazaDashboardBundle:Admin:index }
@@ -11,6 +18,12 @@ haza_dashboard_admin:
 haza_dashboard_adminAdd:
     pattern:  /admin/add
     defaults: { _controller: hazaDashboardBundle:Admin:add }
+    requirements:
+        _method:  GET|POST
+
+haza_dashboard_adminAddCategory:
+    pattern:  /admin/category
+    defaults: { _controller: hazaDashboardBundle:Admin:addCategory }
     requirements:
         _method:  GET|POST
 
