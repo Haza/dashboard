@@ -1,0 +1,11 @@
+haza_dashboard:
+    resource: "@hazaDashboardBundle/Resources/config/routing.yml"
+    prefix:   /haza
+
+blogger_blog:
+    resource: "@BloggerBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_imagine:
+    resource: .
+    type:     imagine
